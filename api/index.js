@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
+// Suppress the deprecation warning for strictQuery
+// mongoose.set('strictQuery', false);
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
@@ -109,8 +111,12 @@ app.get('/api/profile', (req,res) => {
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
       if (err) throw err;
-      const {name,email,_id} = await User.findById(userData.id);
-      res.json({name,email,_id});
+      if(userData.length()==null){
+           res.json("No data found");
+          }
+        res.json("nothing");
+      // const {name,email,_id} = await User.findById(userData.id);
+      // res.json({name,email,_id});
     });
   } else {
     res.json(null);
@@ -247,6 +253,8 @@ app.get('/', (req, res) => {
 mongoose.connect(process.env.MONGO_URL, { 
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  // ssl: true,  // Ensure SSL is enabled
+  // sslValidate: false  // Optional: To avoid SSL validation issues, especially during development
  }).then(()=> app.listen(4000)).then(() => {console.log("db connected")});
 
 // app.listen(4000);
