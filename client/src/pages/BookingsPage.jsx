@@ -10,6 +10,7 @@ export default function BookingsPage() {
   const [bookings,setBookings] = useState([]);
   useEffect(() => {
     axios.get('/bookings').then(response => {
+      console.log(response.data);
       setBookings(response.data);
     });
   }, []);
@@ -20,10 +21,11 @@ export default function BookingsPage() {
         {bookings?.length > 0 && bookings.map(booking => (
           <Link to={`/account/bookings/${booking._id}`} className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden">
             <div className="w-48">
-              <PlaceImg place={booking.place} />
+              {/* <PlaceImg place={booking.place} /> */}
+              <img  src={booking.place?.photosPURLs?.[0]} alt=""/>
             </div>
             <div className="py-3 pr-3 grow">
-              <h2 className="text-xl">{booking.place.title}</h2>
+              <h2 className="text-xl">{booking.place?.title}</h2>
               <div className="text-xl">
                 <BookingDates booking={booking} className="mb-2 mt-4 text-gray-500" />
                 <div className="flex gap-1">

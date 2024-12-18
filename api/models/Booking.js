@@ -8,6 +8,15 @@ const bookingSchema = new mongoose.Schema({
   name: {type:String, required:true},
   phone: {type:String, required:true},
   price: Number,
+  paymentDetails: { 
+    razorpay_payment_id: { type: String },
+    razorpay_order_id: { type: String },
+    razorpay_signature: { type: String }
+  },
+  createdAt: { 
+    type: Date, 
+    default: Date.now 
+  }
 });
 
 const BookingModel = mongoose.model('Booking', bookingSchema);

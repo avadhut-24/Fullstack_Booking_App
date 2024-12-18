@@ -21,16 +21,21 @@ export default function PlacesPage() {
             Add new place
           </Link>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 grid gap-x-8 gap-y-8 grid-cols-3 mx-5">
           {places.length > 0 && places.map(place => (
-            <Link to={'/account/places/'+place._id} className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl">
-              <div className="flex w-32 h-32 bg-gray-300 grow shrink-0">
-                <PlaceImg place={place} />
-              </div>
-              <div className="grow-0 shrink">
-                <h2 className="text-xl">{place.title}</h2>
-                <p className="text-sm mt-2">{place.description}</p>
-              </div>
+            <Link to={'/account/places/'+place._id} className="cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl">
+             
+                <div>
+                  {/* <PlaceImg place={place} className={"h-[200px] w-full object-cover"} /> */}
+                  {console.log(place)}
+                  <img src={place.photosPURLs?.[0]} alt="" />
+                  <h2 className="font-bold mt-2">{place.address}</h2>
+                  <h3 className="text-sm text-gray-500">{place.title}</h3>
+                  <div className="mt-1">
+                    <span className="font-bold">${place.price}</span> per night
+                  </div>
+                </div>
+             
             </Link>
           ))}
         </div>

@@ -10,6 +10,7 @@ export default function PlacesFormPage() {
   const [title,setTitle] = useState('');
   const [address,setAddress] = useState('');
   const [addedPhotos,setAddedPhotos] = useState([]);
+  const [addedPhotosPURLs,setAddedPhotosPURLs] = useState([]);
   const [description,setDescription] = useState('');
   const [perks,setPerks] = useState([]);
   const [extraInfo,setExtraInfo] = useState('');
@@ -23,10 +24,13 @@ export default function PlacesFormPage() {
       return;
     }
     axios.get('/places/'+id).then(response => {
+
        const {data} = response;
+       console.log(data);
        setTitle(data.title);
        setAddress(data.address);
        setAddedPhotos(data.photos);
+       setAddedPhotosPURLs(data.photosPURLs);
        setDescription(data.description);
        setPerks(data.perks);
        setExtraInfo(data.extraInfo);
@@ -57,6 +61,7 @@ export default function PlacesFormPage() {
 
   async function savePlace(ev) {
     ev.preventDefault();
+    console.log(addedPhotos);
     const placeData = {
       title, address, addedPhotos,
       description, perks, extraInfo,
@@ -84,21 +89,36 @@ export default function PlacesFormPage() {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={savePlace}>
-        {preInput('Title', 'Title for your place. should be short and catchy as in advertisement')}
-        <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt"/>
-        {preInput('Address', 'Address to this place')}
-        <input type="text" value={address} onChange={ev => setAddress(ev.target.value)}placeholder="address"/>
-        {preInput('Photos','more = better')}
-        <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
-        {preInput('Description','description of the place')}
-        <textarea value={description} onChange={ev => setDescription(ev.target.value)} />
-        {preInput('Perks','select all the perks of your place')}
-        <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-          <Perks selected={perks} onChange={setPerks} />
+      <form className="mx-20 grid grid-cols-2 gap-x-5">
+        <div>
+          {preInput('Title', 'Title for your place. should be short and catchy as in advertisement')}
+          <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder="title, for example: My lovely apt"/>
         </div>
-        {preInput('Extra info','house rules, etc')}
-        <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
+        <div>
+          {preInput('Address', 'Address to this place')}
+          <input type="text" value={address} onChange={ev => setAddress(ev.target.value)}placeholder="address"/>
+        </div>
+        <div>
+          {preInput('Photos','more = better')}
+          <PhotosUploader addedPhotos={addedPhotos} addedPhotosPURLs={addedPhotosPURLs}  onChange1={setAddedPhotos} onChange2={setAddedPhotosPURLs} />
+        </div>
+        <div>
+          {preInput('Description','description of the place')}
+          <textarea value={description} onChange={ev => setDescription(ev.target.value)} />
+        </div>
+        <div>
+          {preInput('Perks','select all the perks of your place')}
+          <div className="grid mt-2 gap-2 grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
+            <Perks selected={perks} onChange={setPerks} />
+          </div>
+        </div>
+        <div>
+          {preInput('Extra info','house rules, etc')}
+          <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />
+        </div>
+        
+        
+        
         {preInput('Check in&out times','add check in and out times, remember to have some time window for cleaning the room between guests')}
         <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           <div>
@@ -116,7 +136,7 @@ export default function PlacesFormPage() {
                    placeholder="11" />
           </div>
           <div>
-            <h3 className="mt-2 -mb-1">Max number of guests</h3>
+            <h3 className="mt-2 -mb-1"> Number of guests</h3>
             <input type="number" value={maxGuests}
                    onChange={ev => setMaxGuests(ev.target.value)}/>
           </div>
@@ -126,8 +146,11 @@ export default function PlacesFormPage() {
                    onChange={ev => setPrice(ev.target.value)}/>
           </div>
         </div>
-        <button className="primary my-4">Save</button>
       </form>
+      <div className="flex justify-center">
+      <button className="!w-1/3 primary my-4" onClick={savePlace}>Save</button>
+      </div>
+      
     </div>
   );
 }
