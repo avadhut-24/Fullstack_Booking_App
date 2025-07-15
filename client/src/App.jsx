@@ -24,7 +24,7 @@ import BookingsPage from "./pages/BookingsPage";
 import BookingPage from "./pages/BookingPage";
 import ManageUsersPage from "./pages/ManageUsers.jsx";
 
-axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:10000/api";
 axios.defaults.withCredentials = true;
 
 function App() {
