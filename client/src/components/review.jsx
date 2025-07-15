@@ -4,15 +4,18 @@ import axios from 'axios';
 const ReviewSection = ({place, user, placeid}) => {
 //   const [reviews, setReviews] = useState([]); // To store all customer reviews
   const userName = user.name;
+
   const [reviews, setReviews] = useState(place.reviews || []);
   useEffect(() => {
     setReviews(place.reviews || []);
   }, [place.reviews]);
+
   
   const [review, setReview] = useState(''); // For the current review input
   const [rating, setRating] = useState(0); // For the current rating input
   const [loading, setLoading] = useState(false); // Loading state for submission
   const [message, setMessage] = useState(''); // Success/error message
+
   const [editingId, setEditingId] = useState(null); // Which review is being edited
   const [editReview, setEditReview] = useState(''); // Edit review text
   const [editRating, setEditRating] = useState(0); // Edit review rating
@@ -23,6 +26,7 @@ const ReviewSection = ({place, user, placeid}) => {
       return () => clearTimeout(timer);
     }
   }, [message]);
+
 
 
   const handleReviewSubmit = async () => {
@@ -42,12 +46,14 @@ const ReviewSection = ({place, user, placeid}) => {
 
     try {
       setLoading(true);
+
       const response = await axios.post(`places/reviews/add/${placeid}`, reviewData);
       setMessage('Review submitted successfully!');
       setReview('');
       setRating(0);
       // Update local reviews state
       setReviews(response.data);
+
     //   fetchReviews(); // Refresh the reviews after submission
     } catch (error) {
         console.log(error);
