@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const mime = require('mime-types');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+const { GetObjectCommand } = require('@aws-sdk/client-s3');
 
 const s3Client = new S3Client({
     region: process.env.AWS_REGION,

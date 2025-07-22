@@ -7,7 +7,7 @@ const Place = require('../models/Place');
 const jwtSecret = process.env.JWT_SECRET;
 const bcryptSalt = bcrypt.genSaltSync(10);
 require('dotenv').config();
-const {generatePreSignedUrl} = require('../middlewares/uplod');
+const {generatePreSignedUrl} = require('../middlewares/upload');
 
 
 

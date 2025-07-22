@@ -100,7 +100,7 @@ export default function PlacesFormPage() {
         </div>
         <div>
           {preInput('Photos','more = better')}
-          <PhotosUploa  der addedPhotos={addedPhotos} addedPhotosPURLs={addedPhotosPURLs}  onChange1={setAddedPhotos} onChange2={setAddedPhotosPURLs} />
+          <PhotosUploader addedPhotos={addedPhotos} addedPhotosPURLs={addedPhotosPURLs}  onChange1={setAddedPhotos} onChange2={setAddedPhotosPURLs} />
         </div>
         <div>
           {preInput('Description','description of the place')}

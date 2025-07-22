@@ -18,7 +18,7 @@ export default function PhotosUploader({addedPhotos, onChange1, addedPhotosPURLs
     for (let i = 0; i < files.length; i++) {
       data.append('file', files[i]);
     }
-    axios.post('/upload', data, {
+    axios.post('/places/upload', data, {
       headers: { 'Content-type': 'multipart/form-data' }
     })
     .then(response => {

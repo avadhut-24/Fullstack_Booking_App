@@ -1,6 +1,6 @@
 const express = require('express');
 const { createPlace, getUserPlaces, getPlaces, getPlaceById, updatePlace, uploadPhotos, addReview, deleteReview, updateReview } = require('../controllers/placesControllers');
-const { upload } = require('../middlewares/uplod');
+const { upload } = require('../middlewares/upload');
 
 
 
