@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import AccountNav from '../AccountNav';
+import AccountNav from '../components/AccountNav/AccountNav';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -33,8 +33,9 @@ const ManageUsers = () => {
   const toggleStatus = async (id, currentStatus, type) => {
     try {
       const newStatus = currentStatus === 'active' ? 'deactivated' : 'active';
-      const response = await axios.patch(`/update-status/${id}`, { status: newStatus });
-      const updatedUser = response.data.user;
+      const response = await axios.put(`/auth/updateStatus/${id}`, { status: newStatus });
+      const updatedUser = response.data;
+      console.log(updatedUser);
 
       // Update the UI
       if (type === 'user') {

@@ -37,7 +37,11 @@ const login = async (req,res) => {
     if (userDoc) {
       const passOk = bcrypt.compareSync(password, userDoc.password);
       
-      if (passOk && userDoc.role == role) {
+      if(!passOk){
+        return res.status(422).json('pass not ok');
+      }
+      
+      if(userDoc.role == role && userDoc.status == "active") {
         jwt.sign({
           email:userDoc.email,
           id:userDoc._id
@@ -46,7 +50,7 @@ const login = async (req,res) => {
           res.cookie('token', token).json(userDoc);
         });
       } else {
-        res.status(422).json('pass not ok');
+        res.status(403).json('Account deactivated');
       }
     } else {
       res.status(422).json('not found');
@@ -65,6 +69,7 @@ const register = async (req,res) => {
         email,
         password:bcrypt.hashSync(password, bcryptSalt),
         role,
+        status: "active",
       });
       res.status(200).json(userDoc);
     } catch (e) {
@@ -72,8 +77,15 @@ const register = async (req,res) => {
     }
   };
 
-  const logout = (req,res) => {
+const logout = (req,res) => {
     res.cookie('token', '').json(true);
-  };      
+  };   
+  
+const updateStatus = async (req,res) => {
+  const {id} = req.params;
+  const {status} = req.body;
+  const userDoc = await User.findByIdAndUpdate(id, { status }, { new: true });
+  res.json(userDoc); 
+};
 
-module.exports = { getProfile, login, register, logout };
+module.exports = { getProfile, login, register, logout, updateStatus };

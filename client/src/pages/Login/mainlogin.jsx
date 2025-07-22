@@ -5,13 +5,13 @@ const Mainlogin = () => {
   const navigate = useNavigate();
 
   const handleAdmin = () => {
-    navigate('/adminlogin');
+    navigate('/login', { state: { role: 'Admin' } });
   };
   const handleHost = () => {
-    navigate('/hostlogin');
+    navigate('/login', { state: { role: 'Host' } });
   };
   const handleCustomer = () => {
-    navigate('/customerlogin');
+    navigate('/login', { state: { role: 'Customer' } });
   };
 
   return (

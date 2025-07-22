@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import Image from "../Image.jsx";
+import Image from "../components/Image.jsx";
 import {useContext} from "react";
 import {UserContext} from "../UserContext.jsx";
 
@@ -18,7 +18,6 @@ export default function IndexPage() {
   const {user} = useContext(UserContext);
 
   return (
-
     <div>
       <header className="flex justify-between mt-3 mx-5">
       <Link to={'/index'} className="flex items-center gap-1">
@@ -78,15 +77,7 @@ export default function IndexPage() {
           </div>
         </Link>
       ))}
+  </div>  
 </div>
-
-
-
-      
-    </div>
-   
-
-
-    
   );
 }

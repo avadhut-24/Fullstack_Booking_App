@@ -1,19 +1,10 @@
 
 import {Route, Routes} from "react-router-dom";
 import MainLoginPage from "./pages/Login/mainlogin.jsx";
-import AdminLoginPage from "./pages/Login/adminlogin.jsx";
-import HostLoginPage from "./pages/Login/hostlogin.jsx";
-import CustomerLoginPage from "./pages/Login/customerlogin.jsx";
-import AdminRegsiterPage from "./pages/Register/adminregister.jsx";
-import HostRegsiterPage from "./pages/Register/hostregister.jsx";
-import CustomerRegsiterPage from "./pages/Register/customerregister.jsx"
-import AdminIndexPage from "./pages/IndexPages/adminIndex.jsx";
-import HostIndexPage from "./pages/IndexPages/hostIndex.jsx";
-import CustomerIndexPage from "./pages/IndexPages/customerIndex.jsx";
+
+import LoginPage from "./pages/Login/LoginPage.jsx";
+import RegisterPage from "./pages/Register/RegisterPage.jsx"
 import IndexPage from "./pages/IndexPage.jsx";
-import LoginPage from "./pages/LoginPage";
-import Layout from "./Layout";
-import RegisterPage from "./pages/RegisterPage";
 import axios from "axios";
 import {UserContextProvider} from "./UserContext";
 import ProfilePage from "./pages/ProfilePage.jsx";
@@ -30,16 +21,11 @@ axios.defaults.withCredentials = true;
 function App() {
   return (
     
-    
       <UserContextProvider>   
       <Routes>
         <Route path="/" element={<MainLoginPage />}  />
-        <Route path="/adminlogin" element={<AdminLoginPage />}  />
-        <Route path="/hostlogin" element={<HostLoginPage />}  />
-        <Route path="/customerlogin" element={<CustomerLoginPage />}  />
-        <Route path="/adminregister" element={<AdminRegsiterPage />}  />
-        <Route path="/hostregister" element={<HostRegsiterPage />}  />
-        <Route path="/customerregister" element={<CustomerRegsiterPage />}  />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />}  />
         <Route path="/index" element={<IndexPage />}  />
         <Route path="/account" element={<ProfilePage />} />
         <Route path="/place/:id" element={<PlacePage />} />

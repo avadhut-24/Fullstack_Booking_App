@@ -1,13 +1,13 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import BookingWidget from "../BookingWidget";
-import PlaceGallery from "../PlaceGallery";
-import AddressLink from "../AddressLink";
-import PlacesCarousel from "../components/PlaceImgCarousel";
+import BookingWidget from "../components/Booking/BookingWidget.jsx";
+import PlaceGallery from "../components/Place/PlaceGallery.jsx";
+import AddressLink from "../components/AddressLink/AddressLink.jsx";
+import PlacesCarousel from "../components/Place/PlaceImgCarousel";
 import {useContext} from "react";
 import {UserContext} from "../UserContext.jsx";
-import Review from "../components/review.jsx";
+import Review from "../components/Review/Review.jsx";
 
 export default function PlacePage() {
   const {id} = useParams();
@@ -94,9 +94,6 @@ export default function PlacePage() {
     </div>
       
      
-      
-     
-      
       {/* <div className="mt-8 mb-8 grid gap-8 grid-cols-1 md:grid-cols-[2fr_1fr]"> */}
        <div>
           <div>

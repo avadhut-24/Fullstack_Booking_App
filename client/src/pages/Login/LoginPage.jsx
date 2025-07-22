@@ -1,13 +1,13 @@
 import React from 'react'
-import {Link, Navigate} from "react-router-dom";
+import {Link, Navigate, useLocation} from "react-router-dom";
 import {useContext, useState} from "react";
 import axios from "axios";
 import {UserContext} from "../../UserContext.jsx";
 
-const customerlogin = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const role = "Customer";
+  const role = useLocation().state?.role;
   const [redirect, setRedirect] = useState(false);
   const {setUser} = useContext(UserContext);
   async function handleLoginSubmit(ev) {
@@ -57,7 +57,7 @@ return (
                onChange={ev => setPassword(ev.target.value)} />
         <button className="primary">Login</button>
         <div className="text-center py-2 text-gray-500">
-          Don't have an account yet? <Link className="underline text-black" to={'/customerregister'}>Register now</Link>
+        Don't have an account yet? <Link className="underline text-black" to={'/register'} state={{ role: role }}>Register now</Link>
         </div>
       </form>
     </div>
@@ -65,4 +65,4 @@ return (
 )
 }
 
-export default customerlogin
+export default LoginPage

@@ -1,10 +1,10 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import AddressLink from "../AddressLink";
-import PlaceGallery from "../PlaceGallery";
-import BookingDates from "../BookingDates";
-import Header from "../Header.jsx";
+import AddressLink from "../components/AddressLink/AddressLink.jsx";
+import PlaceGallery from "../components/Place/PlaceGallery.jsx";
+import BookingDates from "../components/Booking/BookingDates.jsx";
+import Header from "../components/Header/Header.jsx";
 
 export default function BookingPage() {
   const {id} = useParams();

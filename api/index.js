@@ -26,14 +26,6 @@ app.use(cors({
 }));
 
 
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.sendStatus(204); // Respond with no content
-});
-
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api/auth', authRoutes);
@@ -44,8 +36,6 @@ app.get('/api/test', (req,res) => {
   // mongoose.connect(process.env.MONGO_URL);
   res.json('test ok');
 });
-
-
 
 app.get('/api/customers', async (req,res) => {
   try{

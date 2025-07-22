@@ -1,5 +1,5 @@
 import {useState} from "react";
-import Image from "./Image.jsx";
+import Image from "../Image.jsx";
 
 export default function PlaceGallery({place}) {
 

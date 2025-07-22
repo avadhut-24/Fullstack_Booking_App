@@ -1,13 +1,13 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";
 
-const adminregister = () => {
+const RegisterPage = () => {
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    const role = "Admin"
+    const role = useLocation().state?.role;
     async function registerUser(ev) {
       ev.preventDefault();
       try {
@@ -15,7 +15,7 @@ const adminregister = () => {
           name,
           email,
           password,
-          role
+          role,
           
         });
         alert('Registration successful. Now you can log in');
@@ -44,7 +44,7 @@ const adminregister = () => {
                onChange={ev => setPassword(ev.target.value)} />
         <button className="primary">Register</button>
         <div className="text-center py-2 text-gray-500">
-          Already a member? <Link className="underline text-black" to={'/adminlogin'}>Login</Link>
+          Already a member? <Link className="underline text-black" to={'/login'} state={{ role: role }}>Login</Link>
         </div>
       </form>
     </div>
@@ -52,4 +52,4 @@ const adminregister = () => {
   )
 }
 
-export default adminregister
+export default RegisterPage

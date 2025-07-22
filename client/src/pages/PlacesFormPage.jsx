@@ -1,8 +1,8 @@
-import PhotosUploader from "../PhotosUploader.jsx";
-import Perks from "../Perks.jsx";
+import PhotosUploader from "../components/PhotosUploader/PhotosUploader.jsx";
+import Perks from "../components/Perks/Perks.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import AccountNav from "../AccountNav";
+import AccountNav from "../components/AccountNav/AccountNav.jsx";
 import {Navigate, useParams} from "react-router-dom";
 
 export default function PlacesFormPage() {
@@ -100,7 +100,7 @@ export default function PlacesFormPage() {
         </div>
         <div>
           {preInput('Photos','more = better')}
-          <PhotosUploader addedPhotos={addedPhotos} addedPhotosPURLs={addedPhotosPURLs}  onChange1={setAddedPhotos} onChange2={setAddedPhotosPURLs} />
+          <PhotosUploa  der addedPhotos={addedPhotos} addedPhotosPURLs={addedPhotosPURLs}  onChange1={setAddedPhotos} onChange2={setAddedPhotosPURLs} />
         </div>
         <div>
           {preInput('Description','description of the place')}
